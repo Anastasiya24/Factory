@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { Grid, Table, TableHeaderRow } from '@devexpress/dx-react-grid-material-ui';
 import GridM from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const gridColumn = [
     { name: 'articte', title: 'Артикул' },
@@ -36,6 +37,11 @@ class Quality extends Component {
     render() {
         return (
             <div>
+                <Button variant="contained" style={{margin: '30px 0 0 30px'}}
+                    onClick={() => this.props.history.push('/')}
+                >
+                    Назад
+                </Button>
                 <div className='statistic' style={{ margin: '10px' }}>
                     <Paper style={{ margin: 30, padding: 20 }}>
                         <GridM container spacing={24}>
