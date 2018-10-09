@@ -37,11 +37,14 @@ class Quality extends Component {
     render() {
         return (
             <div>
-                <Button variant="contained" style={{margin: '30px 0 0 30px'}}
+                <Button variant="contained" style={{ margin: '30px 0 0 30px' }}
                     onClick={() => this.props.history.push('/')}
                 >
                     Назад
                 </Button>
+                <center>
+                    <Typography variant="display1" style={{ display: 'inline-block' }}>Качество</Typography>
+                </center>
                 <div className='statistic' style={{ margin: '10px' }}>
                     <Paper style={{ margin: 30, padding: 20 }}>
                         <GridM container spacing={24}>
