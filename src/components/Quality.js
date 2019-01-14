@@ -30,7 +30,7 @@ class Quality extends Component {
         <Table.Row id={row.articte}
             {...restProps}
             style={{ cursor: 'pointer' }}
-            onClick={() => this.props.history.push(`/quality/article/${row.articte}`)}
+            onClick={() => this.props.history.push(`/date/quality/article/${row.articte}`)}
         />
     );
 
@@ -38,7 +38,7 @@ class Quality extends Component {
         return (
             <div>
                 <Button variant="contained" style={{margin: '30px 0 0 30px'}}
-                    onClick={() => this.props.history.push('/')}
+                    onClick={() => this.props.history.push('/date')}
                 >
                     Назад
                 </Button>

@@ -46,7 +46,7 @@ class Article extends Component {
             <div>
                 <Button variant="contained" className={classes.button}
                     style={{margin: '30px 0 0 30px'}}
-                    onClick={() => this.props.history.push('/quality')}
+                    onClick={() => this.props.history.push('/date/quality')}
                 >
                     Назад
                 </Button>

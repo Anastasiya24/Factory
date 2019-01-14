@@ -54,7 +54,7 @@ class MainPage extends Component {
                         />
                         <div>
                             <Button variant="contained" className={classes.button}
-                                onClick={()=>this.props.history.push('/quality')}
+                                onClick={()=>this.props.history.push('/date/quality')}
                             >
                                 Качество
                             </Button>
