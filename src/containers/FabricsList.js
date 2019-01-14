@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 //redux
 import { connect } from "react-redux";
 import { showFabricList } from "../actions/showFabricList";
@@ -25,14 +26,17 @@ class FabricsList extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <List className={classes.root} component="nav">
-        {this.props.fabricsList &&
-          this.props.fabricsList.map(fb => (
-            <ListItem key={fb.id} button>
-              <ListItemText primary={fb.name} />
-            </ListItem>
-          ))}
-      </List>
+      <React.Fragment>
+        <Typography  style={{ margin: 30 }} variant="display1">List of the factories</Typography>
+        <List className={classes.root} component="nav">
+          {this.props.fabricsList &&
+            this.props.fabricsList.map(fb => (
+              <ListItem key={fb.id} button>
+                <ListItemText primary={fb.name} />
+              </ListItem>
+            ))}
+        </List>
+      </React.Fragment>
     );
   }
 }
