@@ -19,7 +19,7 @@ app.get("/show-factories-list", (req, res) => {
       name: "Cool Factory"
     },
     {
-      id: "012345",
+      id: "02345",
       name: "Perfect Factory"
     }
   ]);
