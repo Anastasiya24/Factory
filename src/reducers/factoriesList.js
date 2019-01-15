@@ -1,15 +1,15 @@
-import { SHOW_FABRIC_LIST } from "../constants/fabricActions";
+import { SHOW_FACTORIES_LIST } from "../constants/factoriesConst";
 
 const initialState = {
-  fabricsList: []
+  factoriesList: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case SHOW_FABRIC_LIST:
+    case SHOW_FACTORIES_LIST:
       return {
         ...state,
-        fabricsList: action.payload
+        factoriesList: action.payload
       };
     default:
       return state;

@@ -1,1 +1,0 @@
-export const SHOW_FABRIC_LIST = "SHOW_FABRIC_LIST";

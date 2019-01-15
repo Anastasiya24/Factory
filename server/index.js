@@ -12,7 +12,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get("/show-fabric-list", (req, res) => {
+app.get("/show-factories-list", (req, res) => {
   res.json([
     {
       id: "12345",

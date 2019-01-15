@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import FabricReducer from "./fabricList";
+import FactoriesReducer from "./factoriesList";
 
 const allReducers = combineReducers({
-  fabric: FabricReducer
+  factories: FactoriesReducer
 });
 
 export default allReducers;

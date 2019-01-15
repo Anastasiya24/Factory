@@ -7,7 +7,7 @@ import { withRouter } from "react-router";
 import Quality from "./components/Quality";
 import MainPage from "./components/MainPage";
 import Article from "./components/Article";
-import FabricsList from "./containers/FabricsList";
+import FactoriesList from "./containers/FactoriesList";
 import "./App.css";
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
           </Toolbar>
         </AppBar> */}
         <Switch>
-          <Route path="/" exact component={FabricsList} />
+          <Route path="/" exact component={FactoriesList} />
           <Route path="/date" exact component={MainPage} />
           <Route path="/date/quality" exact component={Quality} />
           <Route path="/date/quality/article/:articleId" component={Article} />
