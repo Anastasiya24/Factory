@@ -23,7 +23,7 @@ const client = new Client({
 client.connect();
 
 app.get("/show-factories-list", (req, res) => {
-  client.query("SELECT * FROM factory", (err, result) => {
+  client.query("SELECT * FROM factory WHERE is_delete=false", (err, result) => {
     if (err) {
       console.log("Error " + err);
       res.status(400).send(err);
@@ -42,6 +42,20 @@ app.post("/add-factory", (req, res) => {
         res.status(400).sendStatus(err);
       }
       res.status(200).json(result.rows);
+    }
+  );
+});
+
+app.patch("/drop-factory/:factoryId", (req, res) => {
+  client.query(
+    "UPDATE Factory SET is_delete = $1 WHERE factory_id = $2",
+    [true, req.params.factoryId],
+    (err, result) => {
+      if (err) {
+        console.log("Error: " + err);
+        res.status(400).sendStatus(err);
+      }
+      res.status(200).json(result);
     }
   );
 });

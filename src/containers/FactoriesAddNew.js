@@ -3,8 +3,6 @@ import Typography from "@material-ui/core/Typography";
 import { styled } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 const GradientButton = styled(Button)({
   background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
@@ -70,8 +68,4 @@ class FactoriesAddNew extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
-}
-
-export default connect(mapDispatchToProps)(FactoriesAddNew);
+export default FactoriesAddNew;

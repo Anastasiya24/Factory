@@ -18,7 +18,7 @@ export default function(state = initialState, action) {
         ...state,
         factoriesList: oldFactoriesList
       };
-    // case DROP_FACTORY:
+    case DROP_FACTORY:
     default:
       return state;
   }
