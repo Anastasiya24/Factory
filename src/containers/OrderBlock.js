@@ -29,7 +29,7 @@ class OrderBlock extends React.Component {
             <Typography variant="display1">Orders</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <OrderList ordersList={this.props.ordersList} />
+            <OrderList ordersList={this.props.ordersList} onOpenDialogWindows={this.props.onOpenDialogWindows}/>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>

@@ -17,7 +17,7 @@ class OrderList extends Component {
         id={row.order_id}
       {...restProps}
       style={{ cursor: "pointer" }}
-      //   onClick={}
+        onClick={() => this.props.onOpenDialogWindows(row.order_id)}
     />
   );
 
