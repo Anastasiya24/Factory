@@ -1,1 +1,3 @@
 export const SHOW_FACTORIES_LIST = "SHOW_FACTORIES_LIST";
+export const ADD_FACTORY = "ADD_FACTORY";
+export const DROP_FACTORY = "DROP_FACTORY"

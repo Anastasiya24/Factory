@@ -5,32 +5,17 @@ import { withRouter } from "react-router";
 // import Toolbar from "@material-ui/core/Toolbar";
 // import Logo from "./logo.png";
 import Quality from "./components/Quality";
-import MainPage from "./components/MainPage";
 import Article from "./components/Article";
-import FactoriesList from "./containers/FactoriesList";
-import "./App.css";
+import FactoriesMain from "./containers/FactoriesMain";
 
 class App extends Component {
   render() {
     return (
-      <div className="main">
-        {/* <AppBar position="static" color="default">
-          <Toolbar>
-            <img
-              src={Logo}
-              style={{ width: "150px", cursor: "pointer" }}
-              alt="Mogotex"
-              onClick={() => this.props.history.push("/")}
-            />
-          </Toolbar>
-        </AppBar> */}
-        <Switch>
-          <Route path="/" exact component={FactoriesList} />
-          <Route path="/date" exact component={MainPage} />
-          <Route path="/date/quality" exact component={Quality} />
-          <Route path="/date/quality/article/:articleId" component={Article} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/" exact component={FactoriesMain} />
+        <Route path="/date/:factoryId" exact component={Quality} />
+        <Route path="/date/article/:articleId" component={Article} />
+      </Switch>
     );
   }
 }

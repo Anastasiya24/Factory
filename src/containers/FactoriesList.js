@@ -3,10 +3,6 @@ import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Typography from "@material-ui/core/Typography";
-//redux
-import { connect } from "react-redux";
-import { showFactoriesList } from "../actions/factoriesActions";
 
 const styles = theme => ({
   root: {
@@ -19,20 +15,15 @@ const styles = theme => ({
 });
 
 class FactoriesList extends React.Component {
-  componentDidMount() {
-    this.props.showFactoriesList();
-  }
-
   render() {
     const { classes } = this.props;
     return (
       <React.Fragment>
-        <Typography  style={{ margin: 30 }} variant="display1">List of the factories</Typography>
         <List className={classes.root} component="nav">
           {this.props.factoriesList &&
             this.props.factoriesList.map(fb => (
-              <ListItem key={fb.id} button>
-                <ListItemText primary={fb.name} />
+              <ListItem key={fb.factory_id} button onClick={() => this.props.onClickToFactory(fb.factory_id)}>
+                <ListItemText primary={fb.factory_name} />
               </ListItem>
             ))}
         </List>
@@ -41,15 +32,4 @@ class FactoriesList extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    factoriesList: state.factories.factoriesList
-  };
-}
-
-export default withStyles(styles)(
-  connect(
-    mapStateToProps,
-    { showFactoriesList }
-  )(FactoriesList)
-);
+export default withStyles(styles)(FactoriesList);
