@@ -32,6 +32,20 @@ app.get("/show-factories-list", (req, res) => {
   });
 });
 
+app.get("/show-orders-list/:factoryId", (req, res) => {
+  client.query(
+    "SELECT * FROM orders WHERE factory_id=$1",
+    [req.params.factoryId],
+    (err, result) => {
+      if (err) {
+        console.log("Error " + err);
+        res.status(400).send(err);
+      }
+      res.status(200).json(result.rows);
+    }
+  );
+});
+
 app.post("/add-factory", (req, res) => {
   client.query(
     "INSERT INTO Factory(factory_name, description) VALUES ($1, $2) RETURNING factory_id, factory_name, description",
