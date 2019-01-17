@@ -16,16 +16,21 @@ const styles = theme => ({
 
 class FactoriesList extends React.Component {
   render() {
-    const { classes } = this.props;
+    const { classes, factoriesList } = this.props;
     return (
       <React.Fragment>
         <List className={classes.root} component="nav">
-          {this.props.factoriesList &&
-            this.props.factoriesList.map(fb => (
-              <ListItem key={fb.factory_id} button onClick={() => this.props.onClickToFactory(fb.factory_id)}>
+          {factoriesList.map(fb => {
+            return (
+              <ListItem
+                key={Date.parse(new Date())}
+                button
+                onClick={() => this.props.onClickToFactory(fb.factory_id)}
+              >
                 <ListItemText primary={fb.factory_name} />
               </ListItem>
-            ))}
+            );
+          })}
         </List>
       </React.Fragment>
     );

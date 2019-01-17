@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import {
   Grid,
@@ -8,8 +9,13 @@ import {
 } from "@devexpress/dx-react-grid-material-ui";
 import Paper from "@material-ui/core/Paper";
 import productsGridColumnName from "../constants/productsGridColumnName";
-
+import { showProductsList } from "../actions/productsActions"
 class Production extends Component {
+  componentDidMount(){
+    this.props.showProductsList(this.props.factoryId)
+  }
+
+
   Cell = props => {
     return <Table.Cell {...props} />;
   };
@@ -42,4 +48,15 @@ class Production extends Component {
   }
 }
 
-export default withRouter(Production);
+function mapStateToProps(state) {
+  return {
+    productList: state.products.productsList
+  };
+}
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { showProductsList }
+  )(Production)
+);

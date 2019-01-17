@@ -1,6 +1,6 @@
 const productsGridColumnName = [
-  { name: "articte", title: "Артикул" },
-  { name: "material", title: "Всего разобрано,м" }
+  { name: "product_name", title: "Продукт" },
+  { name: "cost", title: "Цена" }
 ];
 
 export default productsGridColumnName;

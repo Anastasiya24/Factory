@@ -5,6 +5,7 @@ const pool = require("./config/pool");
 //controllers
 const factory = require("./controllers/factoryController");
 const order = require("./controllers/orderController");
+const products = require("./controllers/productController");
 
 const app = express();
 app.use(cors());
@@ -18,5 +19,6 @@ pool.connect();
 
 app.use("/factory", factory);
 app.use("/order", order);
+app.use("/products", products);
 
 app.listen(5000, () => console.log("Server started"));

@@ -8,13 +8,6 @@ import OrderBlock from "./OrderBlock";
 import ActiveButton from "./ActiveButton";
 import DialogWindow from "./DialogWindow";
 
-const productList = [
-  { articte: "A1", material: 1000, plan: 20, fact: 12 },
-  { articte: "A2", material: 2000, plan: 40, fact: 38 },
-  { articte: "A3", material: 3000, plan: 50, fact: 43 },
-  { articte: "A4", material: 4000, plan: 80, fact: 55 }
-];
-
 class FactoryPage extends Component {
   state = {
     dialogWindows: false,
@@ -48,7 +41,6 @@ class FactoryPage extends Component {
           onButtonClick={() => this.props.history.push("/")}
         />
         <Production
-          productList={productList}
           dropFactory={this.props.dropFactory}
           factoryId={this.props.match.params.factoryId}
         />
