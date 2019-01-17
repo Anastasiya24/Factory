@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const client = require("./config/client");
+const pool = require("./config/pool");
 //controllers
 const factory = require("./controllers/factoryController");
 const order = require("./controllers/orderController");
@@ -14,7 +14,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-client.connect();
+pool.connect();
 
 app.use("/factory", factory);
 app.use("/order", order);

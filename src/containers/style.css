@@ -1,0 +1,58 @@
+/* project-card */
+.list-with-projects {
+  margin-top: 30px;
+}
+
+.header-popup-add-version {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+.header-popup-version {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.popup-add-version {
+  margin-bottom: 20px !important;
+  width: 500px;
+}
+
+/* project-new-card */
+.project-card {
+  min-width: 275px;
+  max-width: 650px;
+  margin-top: 20px;
+}
+
+.project-name-card {
+  margin-bottom: 20px !important;
+  width: 250px;
+}
+
+.block-with-button-add {
+  text-align: right;
+  padding: 10px;
+  margin: 0 16px 10px;
+}
+
+/* project-list */
+.project-description-text {
+  padding-bottom: 20px;
+}
+
+.project-text-remove {
+  margin-top: 15px !important;
+  color: #05538e !important;
+  font-weight: 600;
+  letter-spacing: -1px;
+  cursor: pointer;
+  display: flex;
+}
+
+@media (max-width: 622px) {
+  .popup-add-version {
+    width: 100%;
+  }
+}

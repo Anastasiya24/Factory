@@ -1,29 +1,45 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { styled } from "@material-ui/styles";
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-
-const GradientButton = styled(Button)({
-  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-  border: 0,
-  borderRadius: 3,
-  boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-  color: "white",
-  height: 48,
-  padding: "0 30px"
-});
+import GradientButton from "../styledComponent/GradientButton";
+import ProductCard from "./ProductCard";
+import ProjectsList from "./ProductsList";
 
 class FactoriesAddNew extends React.Component {
   state = {
     factoryName: "",
-    description: ""
+    description: "",
+    productCard: null,
+    productList: []
   };
 
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value
     });
+  };
+
+  onOpenProductCard = () => {
+    this.setState({ productCard: true });
+  };
+
+  onCloseProductCard = () => {
+    this.setState({ productCard: false });
+  };
+
+  onAddNewProduct = product => {
+    let { productList } = this.state;
+    let newProductList = productList;
+    newProductList.push(product);
+    this.setState({
+      productList: newProductList
+    });
+  };
+
+  onSaveFactory = () => {
+    let { factoryName, description, productList } = this.state;
+    if (factoryName !== "" && description !== "" && productList.length !== 0)
+      this.props.onAddFactory(this.state);
   };
 
   render() {
@@ -57,9 +73,36 @@ class FactoriesAddNew extends React.Component {
           onChange={this.handleChange("description")}
         />
         <br />
+        {!this.state.productCard && (
+          <Typography
+            style={{
+              marginTop: 10,
+              display: "inline-block",
+              border: "1px solid black",
+              borderRadius: 10,
+              padding: 10,
+              cursor: "pointer"
+            }}
+            variant="subheading"
+            onClick={this.onOpenProductCard}
+          >
+            Add a product
+          </Typography>
+        )}
+        <br />
+        {this.state.productList.length !== 0 && (
+          <ProjectsList projectsList={this.state.productList} />
+        )}
+        <br />
+        {this.state.productCard && (
+          <ProductCard
+            onCloseProductCard={this.onCloseProductCard}
+            onAddNewProduct={this.onAddNewProduct}
+          />
+        )}
         <GradientButton
           style={{ margin: "20px 0px 7px" }}
-          onClick={() => this.props.onAddFactory(this.state)}
+          onClick={this.onSaveFactory}
         >
           Add a factory
         </GradientButton>
