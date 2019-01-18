@@ -17,6 +17,7 @@ export const showFactoriesList = () => dispatch => {
 
 export const addFactory = factoryInfo => dispatch => {
   client.post("/factory/add-factory", factoryInfo).then(res =>
+    
     dispatch({
       type: ADD_FACTORY,
       payload: res.data[0]

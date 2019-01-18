@@ -4,6 +4,7 @@ const pool = require("../config/pool");
 const showFactoriesList = require("../queries/factoryQueries")
   .showFactoriesList;
 const addFactory = require("../queries/factoryQueries").addFactory;
+
 const dropFactory = require("../queries/factoryQueries").dropFactory;
 
 router.get("/show-factories-list/", (req, res) => {
@@ -19,19 +20,23 @@ router.get("/show-factories-list/", (req, res) => {
 router.post("/add-factory", (req, res) => {
   pool.query(
     addFactory,
-    [
-      req.body.factoryName,
-      req.body.description,
-      req.body.productList[0].productName,
-      Number.parseInt(req.body.productList[0].cost)
-    ],
-    (err, result) => {
-      console.log('cost: ', typeof Number.parseInt(req.body.productList[0].cost))
-      if (err) {
-        console.log("Error: " + err);
-        res.status(400).sendStatus(err);
+    [req.body.factoryName, req.body.description],
+    (err, newFactory) => {
+      if (err) res.status(400).sendStatus(err);
+      if (newFactory) {
+        let factoryId = newFactory.rows[0].factory_id;
+        let productsList = req.body.productList;
+        productsList.map(pr =>
+          pool.query(
+            "CALL addNewProduct($1,$2,$3)",
+            [pr.productName, pr.cost, factoryId],
+            (error, newProducts) => {
+              if (error) res.status(400).sendStatus(error);
+            }
+          )
+        );
+        res.status(200).json(newFactory.rows);
       }
-      res.status(200).json(result.rows);
     }
   );
 });
