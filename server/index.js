@@ -5,7 +5,7 @@ const sequelize = require("./config/sequelizeConfig");
 //controllers
 const factory = require("./routes/factoryRoute");
 const order = require("./routes/orderRoute");
-// const products = require("./controllers/productController");
+const products = require("./routes/productRoute");
 
 const app = express();
 app.use(cors());
@@ -31,6 +31,6 @@ sequelize
 
 app.use("/factory", factory);
 app.use("/order", order);
-// app.use("/products", products);
+app.use("/products", products);
 
 app.listen(5000, () => console.log("Server started"));
