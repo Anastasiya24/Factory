@@ -42,6 +42,10 @@ router.get("/show-factories-list/", (req, res) => {
 //   );
 // });
 
+router.post("/add-factory", (req, res) => {
+  
+});
+
 router.patch("/drop-factory/:factoryId", (req, res) => {
   pool.query(dropFactory, [true, req.params.factoryId], (err, result) => {
     if (err) {
