@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const confiqDB = require("../config/configDB");
 
-const sequelize = new Sequelize("Factory", "postgres", `${confiqDB.password}`, {
+const sequelize = new Sequelize("Factories", "postgres", `${confiqDB.password}`, {
   host: "localhost",
   dialect: "postgres",
   operatorsAliases: false,

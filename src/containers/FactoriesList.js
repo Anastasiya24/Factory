@@ -25,7 +25,7 @@ class FactoriesList extends React.Component {
               <ListItem
                 key={Date.parse(new Date())}
                 button
-                onClick={() => this.props.onClickToFactory(fb.factory_id)}
+                onClick={() => this.props.onClickToFactory(fb.id)}
               >
                 <ListItemText primary={fb.factory_name} />
               </ListItem>

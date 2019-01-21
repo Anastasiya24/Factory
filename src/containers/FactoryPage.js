@@ -60,15 +60,8 @@ class FactoryPage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    factoriesList: state.factories.factoriesList
-  };
-}
-
 export default withRouter(
   connect(
-    mapStateToProps,
     { dropFactory, dropOrder }
   )(FactoryPage)
 );

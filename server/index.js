@@ -1,12 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const pool = require("./config/pool");
 const sequelize = require("./config/sequelizeConfig");
 //controllers
-const factory = require("./controllers/factoryController");
-const order = require("./controllers/orderController");
-const products = require("./controllers/productController");
+const factory = require("./routes/factoryRoute");
+const order = require("./routes/orderRoute");
+// const products = require("./controllers/productController");
 
 const app = express();
 app.use(cors());
@@ -17,7 +16,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
-pool.connect();
+// sequelize.sync({force: true}).then(() => {
+//   console.log('Drop and Resync with { force: true }');
+// });
+
 sequelize
   .authenticate()
   .then(() => {
@@ -29,6 +31,6 @@ sequelize
 
 app.use("/factory", factory);
 app.use("/order", order);
-app.use("/products", products);
+// app.use("/products", products);
 
 app.listen(5000, () => console.log("Server started"));
