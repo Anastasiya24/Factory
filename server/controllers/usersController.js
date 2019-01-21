@@ -1,5 +1,5 @@
 const User = require("../models/UserModel");
 
 exports.showUsersList = (req, res) => {
-  User.findAll({ where: { is_delete: false } });
+  User.findAll({ where: { is_delete: false } }).then(users => res.json(users));
 };

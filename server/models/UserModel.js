@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../config/sequelizeConfig");
 
-const UserModel = sequelize.define("orders", {
+const UserModel = sequelize.define("users", {
   user_name: {
     type: Sequelize.STRING,
     validate: {
