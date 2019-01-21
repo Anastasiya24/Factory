@@ -1,3 +1,3 @@
 module.exports = {
-  showProductsList: "SELECT * FROM Products WHERE factory_id=$1"
+  showProductsList: "SELECT * FROM show_products_list($1)"
 };
