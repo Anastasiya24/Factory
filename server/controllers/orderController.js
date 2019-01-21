@@ -1,9 +1,9 @@
 const Order = require("../models/OrderModel");
 
 exports.showOrdersList = (req, res) => {
-  Order.findAll({ where: { factory_id: req.params.factoryId } }).then(orders =>
-    res.json(orders)
-  );
+  Order.findAll({
+    where: { factory_id: req.params.factoryId, is_delete: false }
+  }).then(orders => res.json(orders));
 };
 
 exports.dropOrder = (req, res) => {
