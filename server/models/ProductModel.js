@@ -2,25 +2,22 @@ const Sequelize = require("sequelize");
 const sequelize = require("../config/sequelizeConfig");
 
 const ProductModel = sequelize.define("products", {
-  product_name: {
+  product_name: { 
     type: Sequelize.STRING,
     validate: {
-      notNull: true,
       len: [2, 200]
     }
   },
   factory_id: {
     type: Sequelize.INTEGER,
     validate: {
-      isInt: true,
-      notNull: true
+      isInt: true
     }
   },
   cost: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DOUBLE,
     validate: {
-      isInt: true,
-      notNull: true
+      // notNull: true
     }
   },
   is_delete: {
