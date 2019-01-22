@@ -5,22 +5,13 @@ const UserModel = sequelize.define("users", {
   user_name: {
     type: Sequelize.STRING,
     validate: {
-      notNull: true,
       len: [2, 200]
     }
   },
   user_email: {
     type: Sequelize.STRING,
     validate: {
-      isEmail: true,
-      notNull: true
-    }
-  },
-  user_password: {
-    type: Sequelize.STRING,
-    validate: {
-      notNull: true,
-      len: [5, 200]
+      isEmail: true
     }
   },
   is_delete: {

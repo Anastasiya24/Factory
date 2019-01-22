@@ -3,11 +3,12 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { dropFactory } from "../actions/factoriesActions";
 import { dropOrder } from "../actions/ordersActions";
+import { addUser } from "../actions/userActions"
 import Production from "./Production";
 import OrderBlock from "./OrderBlock";
 import ActiveButton from "./ActiveButton";
 import DialogWindow from "./DialogWindow";
-
+import CreateUser from "./CreateUser"
 class FactoryPage extends Component {
   state = {
     dialogWindows: false,
@@ -27,6 +28,10 @@ class FactoryPage extends Component {
     this.onCloseDialogWindows();
   };
 
+  onAddNewUser = (user) => {
+    this.props.addUser(user);
+  };
+
   render() {
     return (
       <div>
@@ -44,6 +49,7 @@ class FactoryPage extends Component {
           dropFactory={this.props.dropFactory}
           factoryId={this.props.match.params.factoryId}
         />
+        <CreateUser onAddNewUser={this.onAddNewUser}/>
         <OrderBlock
           factoryId={this.props.match.params.factoryId}
           onOpenDialogWindows={this.onOpenDialogWindows}
@@ -69,6 +75,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { dropFactory, dropOrder }
+    { dropFactory, dropOrder, addUser }
   )(FactoryPage)
 );
