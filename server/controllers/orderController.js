@@ -1,4 +1,5 @@
 const Order = require("../models/OrderModel");
+const Goods = require("../models/GoodsModel");
 
 exports.showOrdersList = (req, res) => {
   Order.findAll({
@@ -7,5 +8,32 @@ exports.showOrdersList = (req, res) => {
 };
 
 exports.dropOrder = (req, res) => {
-  Order.update({ is_delete: true }, { where: { id: req.params.orderId } });
+  Order.destroy({ where: { id: req.params.orderId } })
+  .then(() => res.status(200).json(req.params.orderId))
+};
+
+
+
+function createOrderList(goodsList, orderId) {
+  let newGoodsList = [];
+  goodsList.map(el =>
+    newGoodsList.push({
+      product_id: +el.id,
+      order_id: orderId
+    })
+  );
+  return newGoodsList;
+}
+
+exports.addOrder = (req, res) => {
+  let newOrder = req.body;
+  Order.create({
+    user_id: +newOrder.userId,
+    factory_id: +newOrder.factoryId
+  }).then(order => {
+    let goodsList = createOrderList(newOrder.goodsList, order.id);
+    console.log("goodsList: ", goodsList);
+    Promise.all(goodsList.map(el => Goods.create(el))).then(pr =>
+      res.status(200).json(order))
+  });
 };

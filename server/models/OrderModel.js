@@ -5,15 +5,13 @@ const OrderModel = sequelize.define("orders", {
   user_id: {
     type: Sequelize.INTEGER,
     validate: {
-      isInt: true,
-      notNull: true
+      isInt: true
     }
   },
   factory_id: {
     type: Sequelize.INTEGER,
     validate: {
-      isInt: true,
-      notNull: true
+      isInt: true
     }
   },
   is_delete: {

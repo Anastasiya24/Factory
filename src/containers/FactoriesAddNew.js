@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import GradientButton from "../styledComponent/GradientButton";
 import ProductCard from "./ProductCard";
-import ProjectsList from "./ProductsList";
+import ProductsList from "./ProductsList";
 
 class FactoriesAddNew extends React.Component {
   state = {
@@ -91,7 +91,7 @@ class FactoriesAddNew extends React.Component {
         )}
         <br />
         {this.state.productList.length !== 0 && (
-          <ProjectsList projectsList={this.state.productList} />
+          <ProductsList projectsList={this.state.productList} />
         )}
         <br />
         {this.state.productCard && (

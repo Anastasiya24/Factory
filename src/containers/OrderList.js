@@ -14,19 +14,21 @@ class OrderList extends Component {
 
   TableRow = ({ row, ...restProps }) => (
     <Table.Row
-        id={row.order_id}
+      id={row.id}
       {...restProps}
       style={{ cursor: "pointer" }}
-        onClick={() => this.props.onOpenDialogWindows(row.order_id)}
+      onClick={() => this.props.onOpenDialogWindows(row.id)}
     />
   );
 
   render() {
     return (
-      <Grid columns={orderGridColumnName} rows={this.props.ordersList}>
-        <Table rowComponent={this.TableRow} cellComponent={this.Cell} />
-        <TableHeaderRow />
-      </Grid>
+      <div>
+        <Grid columns={orderGridColumnName} rows={this.props.ordersList}>
+          <Table rowComponent={this.TableRow} cellComponent={this.Cell} />
+          <TableHeaderRow />
+        </Grid>
+      </div>
     );
   }
 }

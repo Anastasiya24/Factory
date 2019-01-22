@@ -5,15 +5,13 @@ const GoodsModel = sequelize.define("goods", {
   product_id: {
     type: Sequelize.INTEGER,
     validate: {
-      isInt: true,
-      notNull: true
+      isInt: true
     }
   },
   order_id: {
     type: Sequelize.INTEGER,
     validate: {
-      isInt: true,
-      notNull: true
+      isInt: true
     }
   },
   is_delete: {

@@ -46,7 +46,7 @@ class CreateUser extends React.Component {
           style={{ margin: "0px 0 0 30px" }}
           onClick={() => this.props.onAddNewUser(this.state)}
         >
-          add users
+          add user
         </Button>
       </div>
     );
