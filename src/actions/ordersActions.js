@@ -5,8 +5,8 @@ import {
   REMOVE_ORDER
 } from "../constants/orderConst";
 
-export const showOrdersList = factoryId => dispatch => {
-  client.get(`/order/show-orders-list/${factoryId}`).then(res => {
+export const showOrdersList = (factoryId, nextPage) => dispatch => {
+  client.get(`/order/show-orders-list/${factoryId}/?nextPage=${nextPage}`).then(res => {
     dispatch({
       type: SHOW_ORDERS_LIST,
       payload: res.data

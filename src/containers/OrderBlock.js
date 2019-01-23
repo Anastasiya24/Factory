@@ -25,7 +25,7 @@ class OrderBlock extends React.Component {
   };
 
   componentDidMount() {
-    this.props.showOrdersList(this.props.factoryId);
+    this.props.showOrdersList(this.props.factoryId, 0);
     this.props.showUserList();
   }
 
@@ -42,10 +42,14 @@ class OrderBlock extends React.Component {
     });
   };
 
-  onAddOrder = (info) => {
+  onAddOrder = info => {
     this.onClosePopup();
     info.factoryId = this.props.factoryId;
     this.props.addOrder(info);
+  };
+
+  onChangeCurrentPage = (currentPage) => {
+    this.props.showOrdersList(this.props.factoryId, currentPage);
   }
 
   render() {
@@ -68,6 +72,10 @@ class OrderBlock extends React.Component {
             <OrderList
               ordersList={this.props.ordersList}
               onOpenDialogWindows={this.props.onOpenDialogWindows}
+              onChangeCurrentPage={this.onChangeCurrentPage}
+              totalCount={this.props.totalCount}
+              currentPage={this.props.currentPage}
+              pageSize={this.props.pageSize}
             />
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -84,11 +92,32 @@ class OrderBlock extends React.Component {
   }
 }
 
+function formatterOrderList(ordersList, usersList) {
+  if (usersList.length !== 0) {
+    let newOrderList = ordersList.map(el => {
+      let userObj = usersList.find(user => user.id === el.user_id);
+      let newOrderObject = {
+        id: el.id,
+        user_name: userObj.user_name,
+        user_email: userObj.user_email,
+        is_delete: el.is_delete,
+        createdAt: el.createdAt
+      };
+      return newOrderObject;
+    });
+    return newOrderList;
+  }
+}
+
 function mapStateToProps(state) {
   return {
-    ordersList: state.orders.ordersList,
     usersList: state.users.clientList,
-    productList: state.products.productsList
+    productList: state.products.productsList,
+    ordersList:
+      formatterOrderList(state.orders.ordersList, state.users.clientList) || [],
+    totalCount: state.orders.totalCount,
+    currentPage: state.orders.currentPage,
+    pageSize: state.orders.pageSize
   };
 }
 

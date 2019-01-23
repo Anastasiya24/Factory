@@ -3,8 +3,10 @@ import { withRouter } from "react-router";
 import {
   Grid,
   Table,
-  TableHeaderRow
+  TableHeaderRow,
+  PagingPanel
 } from "@devexpress/dx-react-grid-material-ui";
+import { PagingState, CustomPaging } from "@devexpress/dx-react-grid";
 import orderGridColumnName from "../constants/orderGridColumnName";
 
 class OrderList extends Component {
@@ -22,15 +24,29 @@ class OrderList extends Component {
   );
 
   render() {
+    const { currentPage, pageSize, totalCount } = this.props;
     return (
       <div>
         <Grid columns={orderGridColumnName} rows={this.props.ordersList}>
+          <PagingState
+            currentPage={currentPage}
+            onCurrentPageChange={this.props.onChangeCurrentPage}
+            pageSize={pageSize}
+          />
+          <CustomPaging totalCount={totalCount} />
           <Table rowComponent={this.TableRow} cellComponent={this.Cell} />
           <TableHeaderRow />
+          <PagingPanel pageSizes={[10, 15, 20]} />
         </Grid>
       </div>
     );
   }
 }
+
+OrderList.defaultProps = {
+  currentPage: 1,
+  pageSize: 10,
+  totalCount: 30
+};
 
 export default withRouter(OrderList);

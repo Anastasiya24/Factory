@@ -1,4 +1,4 @@
-import { ADD_USER, SHOW_USER_LIST } from "../constants/userConst";
+import { ADD_USER, SHOW_USERS_LIST } from "../constants/userConst";
 
 const initialState = {
   clientList: []
@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
       }
       oldUserList.push(action.payload);
       return { ...state, clientList: oldUserList };
-    case SHOW_USER_LIST:
+    case SHOW_USERS_LIST:
       return { ...state, clientList: action.payload };
     default:
       return state;

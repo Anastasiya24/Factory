@@ -3,16 +3,29 @@ const Goods = require("../models/GoodsModel");
 
 exports.showOrdersList = (req, res) => {
   Order.findAll({
-    where: { factory_id: req.params.factoryId, is_delete: false }
-  }).then(orders => res.json(orders));
+    where: { factory_id: req.params.factoryId, is_delete: false },
+    offset: +req.query.nextPage * 2,
+    limit: 2
+  }).then(orders => {
+    let totalCount = orders.length;
+    let currentPage = +req.query.nextPage + 1;
+    let pageSize = 2;
+    let responseObject = {
+      orders,
+      totalCount,
+      currentPage,
+      pageSize
+    };
+    res.status(200).json(responseObject);
+    // res.status(200).json(orders);
+  });
 };
 
 exports.dropOrder = (req, res) => {
-  Order.destroy({ where: { id: req.params.orderId } })
-  .then(() => res.status(200).json(req.params.orderId))
+  Order.destroy({ where: { id: req.params.orderId } }).then(() =>
+    res.status(200).json(req.params.orderId)
+  );
 };
-
-
 
 function createOrderList(goodsList, orderId) {
   let newGoodsList = [];
@@ -34,6 +47,7 @@ exports.addOrder = (req, res) => {
     let goodsList = createOrderList(newOrder.goodsList, order.id);
     console.log("goodsList: ", goodsList);
     Promise.all(goodsList.map(el => Goods.create(el))).then(pr =>
-      res.status(200).json(order))
+      res.status(200).json(order)
+    );
   });
 };

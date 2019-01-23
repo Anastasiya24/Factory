@@ -5,13 +5,24 @@ import {
 } from "../constants/orderConst";
 
 const initialState = {
-  ordersList: []
+  ordersList: [],
+  totalCount: 0,
+  currentPage: 0,
+  pageSize: 0
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case SHOW_ORDERS_LIST:
-      return { ...state, ordersList: action.payload };
+    console.log("asdad: ", action.payload);
+    
+      return {
+        ...state,
+        ordersList: action.payload.orders,
+        totalCount: action.payload.totalCount,
+        currentPage: action.payload.currentPage,
+        pageSize: action.payload.pageSize
+      };
     case REMOVE_ORDER:
       let ordersArray = state.ordersList;
       let removedElementId = +action.payload;
