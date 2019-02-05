@@ -15,6 +15,7 @@ import CreateOrder from "./CreateOrder";
 const styles = theme => ({
   root: {
     marginTop: "60px",
+    width: "100%"
   }
 });
 
@@ -47,9 +48,9 @@ class OrderBlock extends React.Component {
     this.props.addOrder(info);
   };
 
-  onChangeCurrentPage = (currentPage) => {
+  onChangeCurrentPage = currentPage => {
     this.props.showOrdersList(this.props.factoryId, currentPage);
-  }
+  };
 
   render() {
     const { classes } = this.props;
