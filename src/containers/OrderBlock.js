@@ -17,7 +17,8 @@ const styles = theme => ({
     marginTop: "60px",
     width: "100%",
     color: "red",
-    fontSize: "22px"
+    fontSize: "22px",
+    cursor: 'pointer'
   }
 });
 
