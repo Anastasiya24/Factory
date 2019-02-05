@@ -16,6 +16,13 @@ const styles = theme => ({
   root: {
     marginTop: "100px",
     width: "100%"
+<<<<<<< .mine
+
+
+=======
+    fontSize: "22px",
+    cursor: 'pointer'
+>>>>>>> .theirs
   }
 });
 
