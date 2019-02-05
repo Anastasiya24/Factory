@@ -14,11 +14,8 @@ import CreateOrder from "./CreateOrder";
 
 const styles = theme => ({
   root: {
-    marginTop: "60px",
-    width: "100%",
-    color: "red",
-    fontSize: "22px",
-    cursor: 'pointer'
+    marginTop: "24px",
+    width: "24%"
   }
 });
 
