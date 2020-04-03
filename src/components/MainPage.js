@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Currency from './Currency';
 
 const styles = theme => ({
   root: {
@@ -59,19 +60,48 @@ function mask(event) {
 }
 
 class MainPage extends Component {
+  state = {
+    initialSum: null,
+    finalSum: null,
+    finallyCurrency: null,
+    initialCurrency: null
+  };
+
   componentDidMount() {
     var input = document.querySelector('#tel');
     input.addEventListener('input', mask, false);
     input.addEventListener('focus', mask, false);
     input.addEventListener('blur', mask, false);
+
+    // currency
+    fetch('https://currency-convert.azurewebsites.net/get-currency').then(
+      result => {
+        result.json().then(data => {
+          this.setState({
+            initialSum: data.initialSum,
+            finalSum: data.finalSum,
+            finallyCurrency: data.finallyCurrency,
+            initialCurrency: data.initialCurrency
+          });
+        });
+      }
+    );
   }
+
   render() {
+    let { initialSum, initialCurrency, finalSum, finallyCurrency } = this.state;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
+        <Currency
+          initialSum={initialSum}
+          initialCurrency={initialCurrency}
+          finalSum={finalSum}
+          finallyCurrency={finallyCurrency}
+        />
         <Paper className={classes.paper} elevation={1}>
           <center>
-              <p>Phone please</p>
+            <p>Phone please</p>
             <input value='' id='tel' />
           </center>
           <center>
